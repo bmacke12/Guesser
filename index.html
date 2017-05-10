@@ -23,6 +23,20 @@ function guesser()
 	    tnum = document.getElementById('textbox1').value,
 	    mnum = document.getElementById('textbox2').value,
 	    incorrect = [];
+	
+	if (tnum < 1)
+	{
+		alert("Error: numbers must be greater than 0");
+		return;
+		
+	}
+
+	if (tnum > mnum)
+	{
+		alert("Error: max must be greater than target");
+		return;
+	}
+	
 	guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1;	
 	incor:
 	while (guess != tnum)
@@ -45,7 +59,7 @@ function guesser()
 	}  
 	incorrect.push(guess);
 	var len = incorrect.length;
-	var percent = (len / mnum) * 100;	
+	var percent = parseFloat((len / mnum) * 100).toFixed(2);	
 	var ittook = "It took ";
 	var tries = " tries to correctly generate ";
 	document.write(ittook);
@@ -56,7 +70,7 @@ function guesser()
 	document.write("The last guess had a ");
 	document.write(percent);
 	document.write("% chance of being correct.");
-	document.write("<br>");
+	document.write("<br><br>");
 	document.write("Guesses:");
 	document.write("<br>");
 	
@@ -73,7 +87,7 @@ function guesser()
 	var str = "Again?";
 	var web = str.link("https://bmacke12.github.io/Guesser/");
 	document.write(web);
-  */
+  
 	
 		
 }
