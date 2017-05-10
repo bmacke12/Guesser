@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<h1>Guesser</h1>
+<p><em>By Blake Macke</em></p>
+
+<p>A game where the computer randomly generates numbers until it matches the user-appointed target within the user-appointed range.<br> 
+It will print how many attempts were generated and a percentage that represents the chance that the guess had to be the target.</p>
+</head>
+
+<body>
+ <form action="/action_page.php">
+  Enter Target Number: <input type="text" id="textbox1" name="target"><br>
+  Enter Max Number:    <input type="text" id="textbox2" name="max"><br>
+  <button onclick="guesser()">Enter</button>
+</form> 
+
+<script>
+function guesser()
+{
+	var count = 0,
+	    guess = 0,
+	    tnum = document.getElementById('textbox1').value,
+	    mnum = document.getElementById('textbox2').value,
+	    incorrect = [];
+	guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1;	
+	incor:
+	while (guess != tnum)
+	{
+		if (incorrect.length != 0)
+		{
+			for (var i = 0; i < incorrect.length; i++)
+			{
+				if (incorrect[i] == guess)
+				{
+					guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1;
+					continue incor;
+				}
+			}
+		}
+		
+		incorrect.push(guess);
+		
+		guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1;
+	}  
+	incorrect.push(guess);
+	var len = incorrect.length;
+	var percent = (len / mnum) * 100;	
+	var ittook = "It took ";
+	var tries = " tries to correctly generate ";
+	document.write(ittook);
+	document.write(len);
+	document.write(tries);
+	document.write(tnum);
+	document.write("<br>");
+	document.write("The last guess had a ");
+	document.write(percent);
+	document.write("% chance of being correct.");
+	document.write("<br>");
+	document.write("Guesses:");
+	document.write("<br>");
+	
+	for (var j = 0; j < len; j++)
+	{
+		document.write(incorrect[j] + " ");
+		if ((j+1) % 10 == 0)
+		{
+			document.write("<br>");
+		}
+	}
+	document.write("<br><br>");
+	
+	/*var str = "Again?";
+	var web = str.link("file:///C:/Users/Blake/Documents/Computer%20Science/Discovery/html/test.html");
+	document.write(web);
+  */
+	
+		
+}
+</script>
+
+</body>
+</html>
