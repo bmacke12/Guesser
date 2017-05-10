@@ -5,4 +5,4 @@ It will print how many attempts were generated and a percentage that represents 
 Originally made in C++ (Guesser.cpp)
 Remade in HTML (Guesser.html)
 
-Website for the program: https://bmacke12.github.io/Guesser/
+Website for the program that runs Guesser.html: https://bmacke12.github.io/Guesser/
