@@ -1,0 +1,102 @@
+// Blake Macke
+// 5/10/17
+// Guesser.html
+// html version of Guesser.cpp
+
+<html>
+
+<head> // Header
+<h1>Guesser</h1> 
+<p><em>By Blake Macke 5/10/2017</em></p>
+
+<p>A game where the computer randomly generates numbers until it matches the user-appointed target within the user-appointed range.<br> 
+It will print how many attempts were generated and a percentage that represents the chance that the guess had to be the target.</p>
+</head>
+
+<body>
+ <form> // The textboxes
+  Enter Target Number: <input type="text" id="textbox1" name="target"><br>
+  Enter Max Number:    <input type="text" id="textbox2" name="max"><br>
+  <button onclick="guesser()">Enter</button>
+</form> 
+
+<script type="text/javascript">
+function guesser() // Function called when Enter button is pressed.
+{
+	var count = 0,
+	    guess = 0,
+	    tnum = parseInt(document.getElementById('textbox1').value), // Assignes value in target box to tnum.
+	    mnum = parseInt(document.getElementById('textbox2').value), // Assignes value in target box to tnum.
+	    incorrect = [];
+	
+	if (tnum < 1) 
+	{
+		alert("Error: numbers must be greater than 0");
+		return;
+		
+	}
+
+	if (tnum > mnum)
+	{
+		alert("Error: max must be greater than target");
+		return;
+	}
+	
+	guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1;	// Generates number.
+	incor: //goto statement.
+	while (guess != tnum) // While guess is incorrect.
+	{
+		if (incorrect.length != 0) // Skips this step if it is the first guess, since incorrect is empty.
+		{
+			for (var i = 0; i < incorrect.length; i++) // Loops through incorrect and checks if guess has been generated alreay.
+			{
+				if (incorrect[i] == guess)
+				{
+					guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1; // Generate.
+					continue incor; // Goto line 41
+				}
+			}
+		}
+		
+		incorrect.push(guess); // Add guess to incorrect.
+		
+		guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1; // Generate.
+	}  
+	incorrect.push(guess); // Add correct guess to incorrect.
+	var len = incorrect.length;
+	var percent = parseFloat((len / mnum) * 100).toFixed(2); // The percent out of max.	
+	var ittook = "It took ";
+	var tries = " tries to correctly generate ";
+	document.write(ittook); // Print out data.
+	document.write(len);
+	document.write(tries);
+	document.write(tnum);
+	document.write("<br>");
+	document.write("The last guess had a ");
+	document.write(percent);
+	document.write("% chance of being correct.");
+	document.write("<br><br>");
+	document.write("Guesses:");
+	document.write("<br>");
+	
+	for (var j = 0; j < len; j++) // Prints guesses.
+	{
+		document.write(incorrect[j] + " ");
+		if ((j+1) % 10 == 0) // Newline after ten numbers printed.
+		{
+			document.write("<br>");
+		}
+	}
+	document.write("<br><br>");
+	
+	var str = "Again?"; // Link back to original page.
+	var web = str.link("https://bmacke12.github.io/Guesser/");
+	document.write(web);
+  
+	
+		
+}
+</script>
+
+</body>
+</html>
