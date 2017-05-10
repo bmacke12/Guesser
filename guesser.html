@@ -20,8 +20,8 @@ function guesser()
 {
 	var count = 0,
 	    guess = 0,
-	    tnum = document.getElementById('textbox1').value,
-	    mnum = document.getElementById('textbox2').value,
+	    tnum = parseInt(document.getElementById('textbox1').value),
+	    mnum = parseInt(document.getElementById('textbox2').value),
 	    incorrect = [];
 
 	guess = Math.floor(Math.random() * (mnum - 1 + 1)) + 1;	
