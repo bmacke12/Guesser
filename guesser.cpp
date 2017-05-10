@@ -2,6 +2,7 @@
 // Blake Macke
 // guesser.cpp
 // 3/11/17
+// Original C++ code of Guesser
 //-------------------------------------
 
 #include <iostream>
